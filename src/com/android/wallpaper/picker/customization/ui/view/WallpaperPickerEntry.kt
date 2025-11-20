@@ -72,7 +72,7 @@ constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context
     var collapsedHeight = 0
     private var progress = 1f
     private var animator: ValueAnimator? = null
-    private var state: State = State.EXPANDED
+    private var state: State = State.COLLAPSED
     private var expandable: Boolean = true
 
     init {
@@ -139,6 +139,7 @@ constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context
                                 R.dimen.customization_option_container_horizontal_padding
                             ) * 4
                     collapsedHeight = collapsedButton.height
+                    setProgress(PROGRESS_COLLAPSED)
                 }
             }
         )
@@ -210,6 +211,7 @@ constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context
 
     /** Animate the entry to expand. */
     fun expand() {
+        if (true) return
         if (!expandable) {
             return
         }

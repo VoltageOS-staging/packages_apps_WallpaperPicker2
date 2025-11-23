@@ -17,11 +17,14 @@
 package com.android.wallpaper.picker.customization.ui.util
 
 import com.android.wallpaper.picker.customization.ui.util.CustomizationOptionUtil.CustomizationOption
+import com.android.wallpaper.theme.ThemeManager
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class DefaultCustomizationOptionUtil @Inject constructor() : CustomizationOptionUtil {
+
+    data class ThemeOption(val type: ThemeManager.Category) : CustomizationOption
 
     override fun getCustomizationOptionFromDestination(destination: String): CustomizationOption? {
         return null

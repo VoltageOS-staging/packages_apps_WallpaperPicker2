@@ -32,6 +32,9 @@ import com.android.wallpaper.picker.customization.ui.util.CustomizationOptionUti
 import com.android.wallpaper.picker.customization.ui.viewmodel.ColorUpdateViewModel
 import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationOptionsData
 import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationOptionsViewModel
+import com.android.wallpaper.picker.customization.ui.util.DefaultCustomizationOptionUtil
+import com.android.wallpaper.picker.customization.ui.viewmodel.DefaultCustomizationOptionsViewModel
+
 import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel2
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -55,7 +58,17 @@ class DefaultCustomizationOptionsBinder @Inject constructor() : CustomizationOpt
         navigateToPackThemeActivity: (Intent) -> Unit,
         iconStyleViewUtil: IconStyleViewUtil,
     ) {
-        // Do nothing intended
+        homeScreenCustomizationOptionEntries.forEach { (option, view) ->
+            if (option is DefaultCustomizationOptionUtil.ThemeOption) {
+                view.setOnClickListener {
+                    val optionsViewModel = viewModel.customizationOptionsViewModel
+                    if (optionsViewModel is DefaultCustomizationOptionsViewModel) {
+                        optionsViewModel.selectOption(option)
+                    }
+                }
+                view.isClickable = true
+            }
+        }
     }
 
     override fun bindClockPreview(

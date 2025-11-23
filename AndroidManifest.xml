@@ -21,6 +21,8 @@
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
   <uses-permission android:name="android.permission.READ_WALLPAPER_INTERNAL" />
   <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+  <uses-permission android:name="android.permission.MODIFY_THEME_OVERLAY" />
+  <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
   <uses-permission android:name="android.permission.SET_WALLPAPER_COMPONENT" />
   <uses-permission android:name="android.permission.BIND_WALLPAPER" />
   <uses-permission android:name="android.permission.WAKE_LOCK"/>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/customization_option_entry_height"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="@dimen/customization_option_entry_horizontal_padding"
+    android:paddingVertical="@dimen/customization_option_entry_vertical_padding"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:id="@+id/option_entry_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.DeviceDefault.Small.TitleMedium"
+            android:textColor="@color/system_on_surface" />
+
+        <TextView
+            android:id="@+id/option_entry_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.DeviceDefault.Small.LabelMedium"
+            android:textColor="@color/system_on_surface_variant"
+            android:ellipsize="end"
+           android:maxLines="1" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/option_entry_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:padding="12dp"
+        android:background="@drawable/option_item_background"
+        android:tint="?android:attr/textColorPrimary"
+        android:importantForAccessibility="no" />
+
+</LinearLayout>

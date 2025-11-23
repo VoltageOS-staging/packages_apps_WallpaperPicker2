@@ -661,4 +661,9 @@
         [CHAR LIMIT=None] -->
     <string name="carousel_content_description_default_wallpapers">Default wallpaper %1$d of %2$d</string>
 
+    <!-- Theme Picker strings -->
+    <string name="theme_font_section_title">Font</string>
+    <string name="theme_icon_pack_section_title">Icon Pack</string>
+    <string name="default_theme_title">Default</string>
+
 </resources>

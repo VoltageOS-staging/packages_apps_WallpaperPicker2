@@ -29,6 +29,8 @@ import com.android.wallpaper.module.logging.UserEventLogger
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
 import com.android.wallpaper.picker.customization.shared.model.WallpaperDestination
 import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
+import com.android.wallpaper.picker.theme.domain.interactor.ThemeInteractor
+import com.android.wallpaper.picker.theme.ui.viewmodel.ThemePickerViewModel
 import com.android.wallpaper.picker.undo.ui.viewmodel.UndoViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,6 +43,7 @@ class CustomizationPickerViewModel
 constructor(
     undoInteractor: UndoInteractor,
     wallpaperInteractor: WallpaperInteractor,
+    themeInteractor: ThemeInteractor,
     private val savedStateHandle: SavedStateHandle,
     private val logger: UserEventLogger,
 ) : AnimationStateViewModel() {
@@ -50,6 +53,7 @@ constructor(
             interactor = undoInteractor,
             logger = logger,
         )
+    val themePickerViewModel = ThemePickerViewModel(themeInteractor, viewModelScope)
 
     private val homeWallpaperQuickSwitchViewModel: WallpaperQuickSwitchViewModel =
         WallpaperQuickSwitchViewModel(
@@ -133,6 +137,7 @@ constructor(
             defaultArgs: Bundle? = null,
             undoInteractor: UndoInteractor,
             wallpaperInteractor: WallpaperInteractor,
+            themeInteractor: ThemeInteractor,
             logger: UserEventLogger,
         ): AbstractSavedStateViewModelFactory =
             object : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
@@ -145,6 +150,7 @@ constructor(
                     return CustomizationPickerViewModel(
                         undoInteractor = undoInteractor,
                         wallpaperInteractor = wallpaperInteractor,
+                        themeInteractor = themeInteractor,
                         savedStateHandle = handle,
                         logger = logger,
                     )

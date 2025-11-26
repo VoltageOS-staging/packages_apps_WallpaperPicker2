@@ -46,6 +46,8 @@ import com.android.wallpaper.picker.category.wrapper.WallpaperCategoryWrapper
 import com.android.wallpaper.picker.customization.data.content.WallpaperClient
 import com.android.wallpaper.picker.customization.data.repository.WallpaperColorsRepository
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
+import com.android.wallpaper.picker.theme.domain.interactor.ThemeInteractor
+import com.android.wallpaper.picker.theme.data.repository.ThemeCustomizationRepository
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperSnapshotRestorer
 import com.android.wallpaper.picker.di.modules.MainDispatcher
 import com.android.wallpaper.picker.individual.IndividualPickerFragment2
@@ -92,6 +94,8 @@ constructor(
     private var flags: BaseFlags? = null
     private var undoInteractor: UndoInteractor? = null
     private var wallpaperInteractor: WallpaperInteractor? = null
+    private var themeInteractor: ThemeInteractor? = null
+    private var themeRepository: ThemeCustomizationRepository? = null
     private var wallpaperClient: WallpaperClient? = null
     private var wallpaperSnapshotRestorer: WallpaperSnapshotRestorer? = null
 
@@ -294,6 +298,15 @@ constructor(
 
     override fun getWallpaperInteractor(context: Context): WallpaperInteractor {
         return injectedWallpaperInteractor.get()
+    }
+
+    override fun getThemeInteractor(context: Context): ThemeInteractor {
+         val overlayManager = context.getSystemService(android.content.om.OverlayManager::class.java)
+             ?: throw IllegalStateException("OverlayManager not found")
+
+         return themeInteractor ?: ThemeInteractor(
+             themeRepository ?: ThemeCustomizationRepository(context, overlayManager).also { themeRepository = it }
+         ).also { themeInteractor = it }
     }
 
     override fun getWallpaperClient(context: Context): WallpaperClient {

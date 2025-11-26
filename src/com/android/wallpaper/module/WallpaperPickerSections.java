@@ -17,6 +17,8 @@ import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInt
 import com.android.wallpaper.picker.customization.ui.section.ScreenPreviewSectionController;
 import com.android.wallpaper.picker.customization.ui.section.WallpaperQuickSwitchSectionController;
 import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel;
+import com.android.wallpaper.picker.theme.ui.section.ThemeSectionController;
+import com.android.wallpaper.picker.theme.ui.viewmodel.ThemePickerViewModel;
 import com.android.wallpaper.util.DisplayUtils;
 
 import java.util.ArrayList;
@@ -56,6 +58,19 @@ public final class WallpaperPickerSections implements CustomizationSections {
                         wallpaperManager,
                         isTwoPaneAndSmallWidth,
                         customizationPickerViewModel));
+
+        // Font Section
+       sectionControllers.add(new ThemeSectionController(
+                ThemeSectionController.ThemeCategory.FONT,
+                customizationPickerViewModel.getThemePickerViewModel(),
+                lifecycleOwner));
+
+        // Icon Pack Section
+        sectionControllers.add(new ThemeSectionController(
+                ThemeSectionController.ThemeCategory.ICON_PACK,
+                customizationPickerViewModel.getThemePickerViewModel(),
+                lifecycleOwner));
+
         sectionControllers.add(
                 new WallpaperQuickSwitchSectionController(
                         customizationPickerViewModel.getWallpaperQuickSwitchViewModel(screen),

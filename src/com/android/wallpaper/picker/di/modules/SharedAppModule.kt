@@ -17,6 +17,7 @@
 package com.android.wallpaper.picker.di.modules
 
 import android.app.WallpaperManager
+import android.content.om.OverlayManager
 import android.content.ContentResolver
 import android.content.Context
 import android.content.pm.PackageManager
@@ -232,6 +233,12 @@ abstract class SharedAppModule {
         @Singleton
         fun provideWallpaperManager(@ApplicationContext appContext: Context): WallpaperManager {
             return WallpaperManager.getInstance(appContext)
+        }
+
+        @Provides
+        @Singleton
+        fun provideOverlayManager(@ApplicationContext appContext: Context): OverlayManager {
+            return appContext.getSystemService(OverlayManager::class.java) ?: throw IllegalStateException("OverlayManager not found")
         }
     }
 }

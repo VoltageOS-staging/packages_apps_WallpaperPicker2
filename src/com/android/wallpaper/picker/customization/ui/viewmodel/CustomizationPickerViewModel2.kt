@@ -25,6 +25,8 @@ import com.android.wallpaper.model.Screen.HOME_SCREEN
 import com.android.wallpaper.model.Screen.LOCK_SCREEN
 import com.android.wallpaper.picker.common.preview.ui.viewmodel.BasePreviewViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import com.android.wallpaper.picker.theme.domain.interactor.ThemeInteractor
+import com.android.wallpaper.picker.theme.ui.viewmodel.ThemePickerViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,8 +43,10 @@ class CustomizationPickerViewModel2
 constructor(
     customizationOptionsViewModelFactory: CustomizationOptionsViewModelFactory,
     basePreviewViewModelFactory: BasePreviewViewModel.Factory,
+    themeInteractor: ThemeInteractor,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
+    val themePickerViewModel = ThemePickerViewModel(themeInteractor, viewModelScope)
 
     private val initialDestination: String? = savedStateHandle[KEY_DESTINATION]
     private val initialShortcutSlotId: String? = savedStateHandle[KEY_SHORTCUT_SLOT_ID]

@@ -36,6 +36,7 @@ import com.android.wallpaper.picker.category.wrapper.WallpaperCategoryWrapper
 import com.android.wallpaper.picker.customization.data.content.WallpaperClient
 import com.android.wallpaper.picker.customization.data.repository.WallpaperColorsRepository
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperInteractor
+import com.android.wallpaper.picker.theme.domain.interactor.ThemeInteractor
 import com.android.wallpaper.picker.customization.domain.interactor.WallpaperSnapshotRestorer
 import com.android.wallpaper.picker.undo.domain.interactor.SnapshotRestorer
 import com.android.wallpaper.picker.undo.domain.interactor.UndoInteractor
@@ -123,6 +124,8 @@ interface Injector {
         // Empty because we don't support undoing in WallpaperPicker2.
         return HashMap()
     }
+
+    fun getThemeInteractor(context: Context): ThemeInteractor
 
     fun getWallpaperInteractor(context: Context): WallpaperInteractor
 

@@ -88,6 +88,7 @@ import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationOpti
 import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel2
 import com.android.wallpaper.picker.data.WallpaperModel
 import com.android.wallpaper.picker.di.modules.MainDispatcher
+import com.android.wallpaper.picker.theme.ui.section.ThemeSectionController
 import com.android.wallpaper.picker.preview.ui.WallpaperPreviewActivity
 import com.android.wallpaper.picker.preview.ui.view.ClickableMotionLayout
 import com.android.wallpaper.util.ActivityUtils
@@ -277,6 +278,26 @@ class CustomizationPickerFragment2 :
                     view = view,
                     screen = HOME_SCREEN,
                 )
+
+            // Inject Theme Sections (Fonts & Icons) into the Home Screen container
+            val homeOptionContainer = view.requireViewById<LinearLayout>(R.id.home_customization_option_container)
+
+            // Fonts
+            val fontController = ThemeSectionController(
+                ThemeSectionController.ThemeCategory.FONT,
+                customizationPickerViewModel.themePickerViewModel,
+                viewLifecycleOwner
+            )
+            homeOptionContainer.addView(fontController.createView(requireContext()))
+
+            // Icon Packs
+            val iconController = ThemeSectionController(
+                ThemeSectionController.ThemeCategory.ICON_PACK,
+                customizationPickerViewModel.themePickerViewModel,
+                viewLifecycleOwner
+            )
+            homeOptionContainer.addView(iconController.createView(requireContext()))
+
             val customizationOptionFloatingSheetViewMap: Map<CustomizationOption, View> =
                 customizationOptionViewUtil.initFloatingSheet(
                     customizationOptionsData,
